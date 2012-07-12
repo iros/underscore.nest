@@ -15,17 +15,17 @@ var data = [
 And you want it to look like this:
 
 ```javascript
-var expectedData = {
-    children : [
-      { name : 'A', index : 0, children : [
-        { c1 : "A", c2 : "B", c3 : "C", v : 10 },
-        { c1 : "A", c2 : "C", c3 : "D", v : 10 }
-      ]},
-      { name : 'B', index : 1, children : [
-        { c1 : "B", c2 : "B", c3 : "C", v : 10 }
-      ]}
-    ]
-  };
+{
+  children : [
+    { name : 'A', index : 0, children : [
+      { c1 : "A", c2 : "B", c3 : "C", v : 10 },
+      { c1 : "A", c2 : "C", c3 : "D", v : 10 }
+    ]},
+    { name : 'B', index : 1, children : [
+      { c1 : "B", c2 : "B", c3 : "C", v : 10 }
+    ]}
+  ]
+}
 ```
 
 You can accomplish that by using underscore.nest like so:
@@ -42,11 +42,13 @@ Basic API:
 _.nest(data, columnsToReduceBy, reduceFunction);
 ```
 
-* data - An array of objects
-* columnsToReduceBy - Underscore.nest can infinitly nest your data. You can either nest by a single field
+* `data` - An array of objects
+* `columnsToReduceBy` - Underscore.nest can infinitly nest your data. You can either nest by a single field
   by passing the name of that field, or an array of fields.
-* reduceFunction - Optional. If you want to reduce your resulting children into a single value result,
+* `reduceFunction` - Optional. If you want to reduce your resulting children into a single value result,
   pass a function that takes an array of objects and returns a single value.
+
+Note that every child grouping will recieve an `index` property that will mark its order in the heirarchy.
 
 # Examples:
 
@@ -68,7 +70,7 @@ _.nest(data, "c1", _.sum); // _.sum is from underscore.math
 
 Results in:
 
-```json
+```javascript
 {
   children : [
     { name : 'A', index : 0, value : 20 },
@@ -94,42 +96,33 @@ _.nest(data, ["c1", "c2"]);
 
 Results in:
 
-```
+``` javascript
 { children :
   [
     { name : "A",
       children : [
         { name : "B",
           children :[
-            { c1 : "A",
-              c2 : "B",
-              c3 : "C",
-              v :10
-            }],
+            { c1 : "A", c2 : "B", c3 : "C", v :10 }
+          ],
           index : 0},
         { name : "C", 
           children :[
-            { c1 : "A", 
-              c2 : "C", 
-              c3 : "D",
-              v :10
-            }
+            { c1 : "A", c2 : "C", c3 : "D", v :10 }
           ],
           index : 1
         }
       ],
       index : 0 },{
       name : "B",
+      index : 1,
       children : [
         { name : "B",
+          index : 0
           children : [
-           { c1 : "B", 
-             c2 : "B", 
-             c3 : "C", 
-             v : 10
-         }],
-         index : 0
-      }], index : 1
+            { c1 : "B", c2 : "B", c3 : "C", v : 10 }
+          ]
+      }]
     }
   ]
 };
