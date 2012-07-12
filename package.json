@@ -1,0 +1,10 @@
+{
+  "name"          : "underscore.nest",
+  "description"   : "Underscore.Nest is an extenstion for converting flat data into nested tree structures",
+  "homepage"      : "http://github.com/iros/underscore.nest/",
+  "keywords"      : ["util", "functional", "client", "browser", "underscore", "nesting"],
+  "author"        : "Irene Ros",
+  "repository"    : {"type": "git", "url": "git://github.com/iros/underscore.nest.git"},
+  "main"          : "underscore.nest.js",
+  "version"       : "0.1.0"
+}
