@@ -2,6 +2,8 @@ Underscore.Nest
 ================
 
 Underscore.Nest is an extenstion for converting flat data into nested tree structures.
+It works in Node.js and is AMD compatible.
+
 For example, if your data looks like this:
 
 ```javascript
@@ -32,6 +34,21 @@ You can accomplish that by using underscore.nest like so:
 
 ```javascript
   _.nest(data, "c1");
+```
+
+# Node.js
+
+`npm install underscore.nest`
+
+Get your favorite underscore flavor:
+
+```javascript
+// get your requirements in order.
+var u = require('underscore');
+u.nst = require('underscore.nest');
+
+// run your nesting
+u.nst.nest(data, 'c1');
 ```
 
 # API:

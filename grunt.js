@@ -7,7 +7,7 @@ module.exports = function(grunt) {
       banner :  '/**\n' +
                 '* <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("m/d/yyyy") %>\n' +
                 '* <%= pkg.homepage %>\n' +
-                '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>;\n' +
+                '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;\n' +
                 '* Underscore.Nest is freely distributable under the MIT license.\n' +
                 '*/'
     },
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
         browser : true,
         bitwise  : true,
         loopfunc : true,
-        predef : [ "_" ]
+        predef : [ "_", "exports", "define" ]
       },
       globals : {
         QUnit : true,

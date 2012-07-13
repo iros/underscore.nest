@@ -1,5 +1,5 @@
 /**
-* underscore.nest - v0.1.0 - 7/12/2012
+* underscore.nest - v0.1.1 - 7/13/2012
 * http://github.com/iros/underscore.nest/
 * Copyright (c) 2012 Irene Ros;
 * Underscore.Nest is freely distributable under the MIT license.
@@ -81,6 +81,23 @@
     return _infiniteNest({}, 0);
   };
   
-  _.mixin(nester);
+// CommonJS module is defined
+  if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
+      // Export module
+      module.exports = nester;
+    }
+    exports.nester = nester;
+
+  } else if (typeof define === 'function' && define.amd) {
+    // Register as a named module with AMD.
+    define('underscore.nest', [], function() {
+      return nester;
+    });
+
+  } else {
+    // Integrate with Underscore.js if defined
+    global._.mixin(nester);
+  }
 
 }(this, _));
