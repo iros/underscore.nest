@@ -4,7 +4,16 @@
 * Copyright (c) 2012 Irene Ros;
 * Underscore.Nest is freely distributable under the MIT license.
 */
-(function(global, _) {
+(function(global) {
+
+  var _ = global._;
+
+  if(_ === undefined) {
+    if (typeof require !== 'undefined') {
+      _ = require('underscore');
+    }
+  }
+
 
   var nester = global.nest = {};
 
@@ -100,4 +109,5 @@
     global._.mixin(nester);
   }
 
-}(this, _));
+}(this));
+
